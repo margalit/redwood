@@ -7,8 +7,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "npm-packlist": "2.2.2",
-    "typescript-transform-paths": "3.0.2"
+    "npm-packlist": "2.2.2"
   },
   "resolutions": {
     "@types/react": "17.0.14",
