@@ -6,13 +6,10 @@ import '../../../../lib/test'
 
 import * as functionGenerator from '../function'
 
-// Should be refactored as it's repeated
-type WordFilesType = { [key: string]: string }
-
-let singleWordDefaultFiles: WordFilesType
-let multiWordDefaultFiles: WordFilesType
-let javascriptFiles: WordFilesType
-let typescriptFiles: WordFilesType
+let singleWordDefaultFiles
+let multiWordDefaultFiles
+let javascriptFiles
+let typescriptFiles
 
 beforeAll(() => {
   singleWordDefaultFiles = functionGenerator.files({
