@@ -10,7 +10,7 @@ import fg from 'fast-glob'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const packageRoot = path.resolve(__dirname, '../../../../packages/cli')
+const packageRoot = path.resolve(__dirname, '../../../../packages/internal')
 
 const configFile = path.join(packageRoot, '.swcrc')
 const srcRoot = path.resolve(packageRoot, 'src')
@@ -20,9 +20,9 @@ console.time('...Done. Took')
 // console.log('Config file:', path.join(packageRoot, '.swcrc'))
 // console.log()
 
-const code = fg.sync('**/*.js', {
+const code = fg.sync('**/*.ts', {
   cwd: srcRoot,
-  ignore: ['**/*.test.js', '**/__tests__/**', '**/__mocks__/**', '**/*.d.ts'],
+  ignore: ['**/*.test.ts', '**/__tests__/**', '**/__mocks__/**', '**/*.d.ts'],
 })
 
 // console.log('Compiling files...')
@@ -41,18 +41,5 @@ for (const srcPath of code) {
   //console.log('', dest)
 }
 
-// console.log()
-// console.log('Copying templates...')
-const templates = fg.sync('**/*.template', {
-  cwd: srcRoot,
-  ignore: ['**/*.test.js', '**/__tests__/**', '**/__mocks__/**', '**/*.d.ts'],
-})
-for (const templatePath of templates) {
-  const dest = path.join(packageRoot, 'dist', templatePath)
-
-  fs.mkdirSync(path.dirname(dest), { recursive: true })
-  fs.copyFileSync(path.join(srcRoot, templatePath), dest)
-  // console.log('', dest)
-}
 // console.log()
 console.timeEnd('...Done. Took')
